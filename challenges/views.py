@@ -1,7 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-import stringcase
 
 # Create your views here.
 
@@ -49,11 +48,9 @@ def monthly_challenge(request, month):
         # Return a not found response if the month is not supported
         return HttpResponseNotFound("<h1>This month is not supported!</h1>")
 
-    # Convert month to a title case for display purposes
-    month_title = stringcase.titlecase(month)
     rendered_content = render(
         request,
         "challenges/challenge.html",
-        {"text": challenge_text, "month": month_title},
+        {"text": challenge_text, "month": month.capitalize()},
     )
     return HttpResponse(rendered_content)
