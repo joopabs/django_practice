@@ -51,6 +51,6 @@ def monthly_challenge(request, month):
     rendered_content = render(
         request,
         "challenges/challenge.html",
-        {"text": challenge_text, "month": month.capitalize()},
+        {"text": challenge_text, "month": month},
     )
     return HttpResponse(rendered_content)
