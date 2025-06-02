@@ -16,9 +16,17 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import path, include
+
+
+def chrome_devtools_json(request):
+    return JsonResponse({})
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("challenges/", include("challenges.urls")),
+    # Your existing URL patterns
+    path('.well-known/appspecific/com.chrome.devtools.json', chrome_devtools_json),
 ]
